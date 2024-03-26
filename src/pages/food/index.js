@@ -15,7 +15,7 @@ export async function getServerSideProps() {
 
 export default function HomePage({ foods }) {
   return (
-    <MainLayout>
+    <MainLayout className="flex flex-wrap gap-8 justify-center">
       {foods.map((food) => (
         <FoodsCard key={food.id} {...food} />
       ))}

@@ -20,18 +20,18 @@ export async function getServerSideProps(context) {
 
 export default function FoodDetailPage({ food }) {
   const [isOpen, setIsOpen] = useState(false);
-  const route = useRouter();
+  const router = useRouter();
   const { del, loading: deleteLoading } = useDelete();
   const { post, loading: postLoading } = usePost();
   const loading = deleteLoading || postLoading;
 
   const handleBack = () => {
-    route.push("/food");
+    router.push("/food");
   };
 
   const handleDeleteFood = async () => {
     del({ id: food.id });
-    route.push("/food");
+    router.push("/food");
   };
 
   const handleEditFood = async ({
@@ -44,7 +44,7 @@ export default function FoodDetailPage({ food }) {
       url: `update-food/${food.id}`,
       body: { name, imageUrl, description, ingredients },
     });
-    route.reload();
+    router.reload();
   };
 
   return (

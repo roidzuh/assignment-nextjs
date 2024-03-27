@@ -17,7 +17,7 @@ export default function HomePage({ foods }) {
   return (
     <MainLayout className="flex flex-wrap gap-8 justify-center">
       {foods.map((food) => (
-        <FoodsCard key={food.id} {...food} />
+        <FoodCard key={food.id} {...food} />
       ))}
     </MainLayout>
   );

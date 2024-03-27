@@ -18,5 +18,5 @@ export default function useDelete() {
     setLoading(false);
   };
 
-  return { del };
+  return { del, loading };
 }

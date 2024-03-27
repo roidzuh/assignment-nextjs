@@ -1,4 +1,4 @@
-import FoodsCard from "@/components/FoodsCard";
+import FoodCard from "@/components/FoodCard";
 import MainLayout from "@/layout/MainLayout";
 import axios from "axios";
 

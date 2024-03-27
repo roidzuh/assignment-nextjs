@@ -16,9 +16,9 @@ export default function FoodForm({
     const name = formData.get("name");
     const description = formData.get("description");
     const ingredients = formData.get(["ingredients"]).split(",");
-    const imgUrl = formData.get("imgUrl");
+    const imageUrl = formData.get("imgUrl");
 
-    onSubmitFood({ name, description, ingredients, imgUrl });
+    onSubmitFood({ name, description, ingredients, imageUrl });
   };
 
   return (

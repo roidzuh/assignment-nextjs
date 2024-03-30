@@ -8,12 +8,17 @@ export default function Header() {
           FOODIDU
         </h1>
         <nav>
-          <Link
-            href={"/food/create"}
-            className="text-blue-500 hover:text-blue-800"
-          >
-            Create Food
-          </Link>
+          <ul className="flex gap-4">
+            <Link href={"/food"} className="text-blue-500 hover:text-blue-800">
+              Home
+            </Link>
+            <Link
+              href={"/food/create"}
+              className="text-blue-500 hover:text-blue-800"
+            >
+              Create Food
+            </Link>
+          </ul>
         </nav>
       </div>
     </header>

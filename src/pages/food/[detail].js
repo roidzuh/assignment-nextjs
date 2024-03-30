@@ -53,7 +53,7 @@ export default function FoodDetailPage({ food }) {
         <img
           src={food.imageUrl}
           alt={food.name}
-          className="w-64 h-56 rounded-lg object-cover"
+          className="w-96 h-72 rounded-lg object-cover"
         />
         <div>
           <p className="text-xl font-semibold">Nama Makanan : {food?.name}</p>

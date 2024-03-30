@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function Home() {
-  const route = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
-    route.push("/food");
+    router.replace("/food");
   }, []);
   return null;
 }

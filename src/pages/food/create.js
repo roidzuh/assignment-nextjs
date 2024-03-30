@@ -12,7 +12,7 @@ export default function CreateFoodPage() {
     ingredients,
     imageUrl,
   }) => {
-    post({
+    await post({
       url: "create-food",
       body: { name, description, ingredients, imageUrl },
     });

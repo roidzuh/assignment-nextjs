@@ -3,8 +3,10 @@ import { useState } from "react";
 
 export default function useDelete() {
   const [loading, setLoading] = useState(false);
+
   const del = async ({ id }) => {
     setLoading(true);
+
     await axios.delete(
       `https://api-bootcamp.do.dibimbing.id/api/v1/delete-food/${id}`,
       {

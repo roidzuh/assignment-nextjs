@@ -30,8 +30,8 @@ export default function FoodDetailPage({ food }) {
   };
 
   const handleDeleteFood = async () => {
-    del({ id: food.id });
-    router.push("/food");
+    await del({ id: food.id });
+    router.replace("/food");
   };
 
   const handleEditFood = async ({
@@ -40,7 +40,7 @@ export default function FoodDetailPage({ food }) {
     description,
     ingredients,
   }) => {
-    post({
+    await post({
       url: `update-food/${food.id}`,
       body: { name, imageUrl, description, ingredients },
     });
@@ -48,61 +48,67 @@ export default function FoodDetailPage({ food }) {
   };
 
   return (
-    <MainLayout className="flex flex-col gap-4 items-center">
-      <img
-        src={food.imageUrl}
-        alt={food.name}
-        className="w-auto h-80 rounded-lg"
-      />
-      <div>
-        <p>Nama Makanan : {food?.name}</p>
-        <p>Deskripsi : {food?.description}</p>
-        <p>Bahan-Bahan : {food?.ingredients.join(", ")}</p>
-      </div>
-      <div className="flex gap-4">
-        <Button
-          name="Back"
-          color={` ${
-            loading
-              ? "bg-gray-500 cursor-not-allowed"
-              : "bg-blue-500 hover:bg-blue-700"
-          } text-white`}
-          onClick={handleBack}
-          disabled={loading}
+    <MainLayout>
+      <div className="flex flex-col gap-4 items-center p-4">
+        <img
+          src={food.imageUrl}
+          alt={food.name}
+          className="w-64 h-56 rounded-lg object-cover"
         />
-        <Button
-          name={isOpen ? "Cancel" : "Edit"}
-          color={` ${
-            loading
-              ? "bg-gray-500 cursor-not-allowed"
-              : "bg-blue-500 hover:bg-blue-700"
-          } text-white`}
-          onClick={() => setIsOpen(!isOpen)}
-          disabled={loading}
-        />
-        <Button
-          name={"Delete"}
-          color={` ${
-            loading
-              ? "bg-gray-500 cursor-not-allowed"
-              : "bg-red-500 hover:bg-red-700"
-          } text-white  `}
-          onClick={handleDeleteFood}
-          disabled={loading}
-        />
-      </div>
+        <div>
+          <p className="text-xl font-semibold">Nama Makanan : {food?.name}</p>
+          <p className="text-lg">Deskripsi : {food?.description}</p>
+          <p className="text-lg">
+            Bahan-Bahan : {food?.ingredients.join(", ")}
+          </p>
+        </div>
+        <div className="flex gap-4">
+          <Button
+            name="Back"
+            color={`${
+              loading
+                ? "bg-gray-500 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-700"
+            } text-white`}
+            onClick={handleBack}
+            disabled={loading}
+          />
+          <Button
+            name={isOpen ? "Cancel" : "Edit"}
+            color={`${
+              loading
+                ? "bg-gray-500 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-700"
+            } text-white`}
+            onClick={() => setIsOpen(!isOpen)}
+            disabled={loading}
+          />
+          <Button
+            name={"Delete"}
+            color={`${
+              loading
+                ? "bg-gray-500 cursor-not-allowed"
+                : "bg-red-500 hover:bg-red-700"
+            } text-white`}
+            onClick={handleDeleteFood}
+            disabled={loading}
+          />
+        </div>
 
-      {isOpen && (
-        <FoodForm
-          title={"Update"}
-          onSubmitFood={handleEditFood}
-          loading={loading}
-          defaultName={food?.name}
-          defaultDescription={food?.description}
-          defaultIngredients={food?.ingredients}
-          defaultImgUrl={food?.imageUrl}
-        />
-      )}
+        {isOpen && (
+          <div className="w-full md:w-1/2">
+            <FoodForm
+              title={"Update Food"}
+              onSubmitFood={handleEditFood}
+              loading={loading}
+              defaultName={food?.name}
+              defaultDescription={food?.description}
+              defaultIngredients={food?.ingredients}
+              defaultImgUrl={food?.imageUrl}
+            />
+          </div>
+        )}
+      </div>
     </MainLayout>
   );
 }

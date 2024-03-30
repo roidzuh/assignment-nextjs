@@ -6,9 +6,9 @@ export default function MainLayout({ children, className }) {
     <div className="w-full ">
       <div className="mx-10">
         <Header />
-        <main className={className}>{children}</main>
-        <Footer />
+        <main className={`mt-28 ${className}`}>{children}</main>
       </div>
+      <Footer />
     </div>
   );
 }

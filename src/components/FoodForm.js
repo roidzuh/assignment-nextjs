@@ -15,14 +15,30 @@ export default function FoodForm({
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name");
     const description = formData.get("description");
-    const ingredients = formData.get(["ingredients"]).split(",");
+    const ingredients = formData
+      .get("ingredients")
+      .split(",")
+      .map((ingredient) => ingredient.trim())
+      .filter(Boolean);
     const imageUrl = formData.get("imgUrl");
+
+    if (
+      !name.trim() ||
+      !description.trim() ||
+      ingredients.length === 0 ||
+      !imageUrl.trim()
+    ) {
+      return alert("Silahkan isi semua inputan dengan benar");
+    }
 
     onSubmitFood({ name, description, ingredients, imageUrl });
   };
 
   return (
-    <form className="flex flex-col gap-4" onSubmit={handleForm}>
+    <form
+      className="flex flex-col gap-4 p-4 bg-white shadow-md rounded-lg"
+      onSubmit={handleForm}
+    >
       <h3 className="text-2xl font-bold">{title}</h3>
       <label htmlFor="name">Name</label>
       <input
@@ -31,6 +47,7 @@ export default function FoodForm({
         name="name"
         placeholder="Name"
         defaultValue={defaultName}
+        className="border rounded-lg p-2"
       />
       <label htmlFor="description">Description</label>
       <input
@@ -39,6 +56,7 @@ export default function FoodForm({
         name="description"
         placeholder="Description"
         defaultValue={defaultDescription}
+        className="border rounded-lg p-2"
       />
       <label htmlFor="ingredients">Ingredients</label>
       <textarea
@@ -46,14 +64,16 @@ export default function FoodForm({
         name="ingredients"
         placeholder="Ingredients"
         defaultValue={defaultIngredients}
+        className="border rounded-lg p-2"
       />
       <label htmlFor="imgUrl">Image Url</label>
       <input
         type="text"
         id="imgUrl"
         name="imgUrl"
-        placeholder="image Url"
+        placeholder="Image Url"
         defaultValue={defaultImgUrl}
+        className="border rounded-lg p-2"
       />
       <Button
         name={title}
